@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+    skeleton_service:
+      container_name: skeletonApi
+      build: ./skeleton-service
+      command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+      privileged: true
+      volumes:
+        - ./skeleton-service/:/app/
+      ports:
+        - 8001:8000
+      environment:
+        - SKELETON_SERVICE_HOST_URL=http://localhost:8000/api/v1/skeleton
