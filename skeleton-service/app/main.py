@@ -1,7 +1,11 @@
 from fastapi import FastAPI
+
 from api.routes import builder_router
+from api.routes_user import builder_router_user
 
-router = builder_router()
-fastApp = FastAPI(openapi_url="/api/v1/skeleton/openapi.json", docs_url="/api/v1/skeleton/docs")
+router_skeleton = builder_router()
+router_user = builder_router_user()
 
-fastApp.include_router(router, prefix='/api/v1/skeleton', tags=['skeleton'])
+app = FastAPI(docs_url="/api/docs")
+app.include_router(router_skeleton, prefix='/api/v1', tags=['skeleton'])
+app.include_router(router_user, prefix='/api/v1', tags=['user'])

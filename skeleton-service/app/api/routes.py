@@ -4,8 +4,8 @@ from fastapi import APIRouter
 def builder_router():
     router = APIRouter()
 
-    @router.get("/")
+    @router.get("/is-alive")
     async def read_root():
-        return {"Hello": "World"}
+        return {"message": "ok"}
 
     return router
